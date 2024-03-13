@@ -1,4 +1,4 @@
-﻿namespace NameSorter.Console;
+﻿namespace NameSorter.ConsoleApp;
 
 class Program
 {
