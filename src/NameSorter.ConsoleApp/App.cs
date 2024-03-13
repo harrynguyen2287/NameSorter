@@ -15,8 +15,29 @@ public class App
 
   public void Run(string[] args)
   {
+    SortNamesFromFile(args);
+  }
+
+  private void SortNamesFromFile(string[] args)
+  {
+    if (!ValidateArgs(args))
+    {
+      return;
+    }
+
     var unsortedNames = fileService.ReadListFromFile(args[0]);
-    unsortedNames.ForEach(name => Console.WriteLine("Unsorted Names: {0}", name))
-    ;
+    var sortedNames = nameService.SortList(unsortedNames);
+    fileService.SaveListToFile("./sorted-names-list.txt", sortedNames);
+    sortedNames.ForEach(name => Console.WriteLine(name));
+  }
+
+  private bool ValidateArgs(string[] args)
+  {
+    if (args.Length <= 0)
+    {
+      Console.WriteLine("ERROR: Please input the file path!");
+      return false;
+    }
+    return true;
   }
 }
