@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameSorter.Core", "src\Name
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameSorter.ConsoleApp", "src\NameSorter.ConsoleApp\NameSorter.ConsoleApp.csproj", "{44457810-3853-4290-A827-96DBE9CA114B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{60219149-4EFA-4C2D-BE13-C73C6913EB93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameSorter.Core.UnitTest", "test\NameSorter.Core.UnitTest\NameSorter.Core.UnitTest.csproj", "{04D43BCA-E328-4CFD-A9F9-16667F890F64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameSorter.ConsoleApp.UnitTest", "test\NameSorter.ConsoleApp.UnitTest\NameSorter.ConsoleApp.UnitTest.csproj", "{295EB54F-D936-4B70-95C2-624FD3B6FB3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,9 +36,19 @@ Global
 		{44457810-3853-4290-A827-96DBE9CA114B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44457810-3853-4290-A827-96DBE9CA114B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44457810-3853-4290-A827-96DBE9CA114B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04D43BCA-E328-4CFD-A9F9-16667F890F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04D43BCA-E328-4CFD-A9F9-16667F890F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04D43BCA-E328-4CFD-A9F9-16667F890F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04D43BCA-E328-4CFD-A9F9-16667F890F64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{295EB54F-D936-4B70-95C2-624FD3B6FB3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{295EB54F-D936-4B70-95C2-624FD3B6FB3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{295EB54F-D936-4B70-95C2-624FD3B6FB3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{295EB54F-D936-4B70-95C2-624FD3B6FB3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1AD97B00-EA6C-4BEB-BA49-BA89A801DFED} = {DC9551A6-AB06-42AB-9A70-16F8803AAE77}
 		{44457810-3853-4290-A827-96DBE9CA114B} = {DC9551A6-AB06-42AB-9A70-16F8803AAE77}
+		{04D43BCA-E328-4CFD-A9F9-16667F890F64} = {60219149-4EFA-4C2D-BE13-C73C6913EB93}
+		{295EB54F-D936-4B70-95C2-624FD3B6FB3E} = {60219149-4EFA-4C2D-BE13-C73C6913EB93}
 	EndGlobalSection
 EndGlobal

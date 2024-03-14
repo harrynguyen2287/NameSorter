@@ -1,3 +1,5 @@
+using System.Reflection.Metadata;
+
 namespace NameSorter.Core.Services;
 public class NameService : INameService
 {
@@ -13,11 +15,18 @@ public class NameService : INameService
     // Get file path
     var filePath = GetFilePathFromArgs(args);
 
-    // Read file and sort names
+    // Read file
     var unsortedNames = fileService.ReadListFromFile(filePath);
+    if (unsortedNames == null || unsortedNames.Count <= 0)
+    {
+      Console.WriteLine(ErrorMessage.NO_VALID_NAME_IN_FILE);
+      return;
+    }
+
+    // Sort names
     var sortedNames = SortList(unsortedNames);
     WriteNamesToConsole(sortedNames);
-    fileService.SaveListToFile("./sorted-names-list.txt", sortedNames);
+    fileService.SaveListToFile(Constants.SORTED_FILE_PATH, sortedNames);
   }
 
   public List<string> SortList(List<string> unsortedNames)
@@ -30,7 +39,7 @@ public class NameService : INameService
 
   public void WriteNamesToConsole(List<string> sortedNames)
   {
-    Console.WriteLine("Sorted Names:");
+    Console.WriteLine(Constants.SORTED_NAMES_TITLE);
     sortedNames.ForEach(name => Console.WriteLine(name));
   }
 
@@ -46,7 +55,7 @@ public class NameService : INameService
       }
       else
       {
-        Console.WriteLine("Please input the file path:");
+        Console.WriteLine(ErrorMessage.INVALID_FILE_PATH);
         filePath = Console.ReadLine();
       }
     }
