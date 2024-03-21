@@ -15,6 +15,17 @@ public class NameService : INameService
     // Get file path
     var filePath = GetFilePathFromArgs(args);
 
+    // Validate sort direction
+    var isValidSortDirection = ValidateSortDirection(args);
+    if (!isValidSortDirection)
+    {
+      Console.WriteLine(ErrorMessage.INVALID_NAME_IN_FILE);
+      return;
+    }
+
+    // Get sortDirection
+    string sortDirection = args[1];
+
     // Read file
     var unsortedNames = fileService.ReadListFromFile(filePath);
     if (unsortedNames == null || unsortedNames.Count <= 0)
@@ -24,17 +35,28 @@ public class NameService : INameService
     }
 
     // Sort names
-    var sortedNames = SortList(unsortedNames);
+    var sortedNames = SortList(unsortedNames, sortDirection);
     WriteNamesToConsole(sortedNames);
     fileService.SaveListToFile(Constants.SORTED_FILE_PATH, sortedNames);
   }
 
-  public List<string> SortList(List<string> unsortedNames)
+  public List<string> SortList(List<string> unsortedNames, string sortDirection)
   {
-    return unsortedNames
-        .OrderBy(name => name.Split(' ').Last())
-        .ThenBy(name => string.Join(" ", name.Split(' ').TakeWhile(n => n != name.Split(' ').Last())))
-        .ToList();
+    IEnumerable<string> query;
+    if (sortDirection == SortDirection.ASC)
+    {
+      query = unsortedNames
+          .OrderBy(name => name.Split(' ').Last())
+          .ThenBy(name => string.Join(" ", name.Split(' ').TakeWhile(n => n != name.Split(' ').Last())));
+    }
+    else
+    {
+      query = unsortedNames
+          .OrderByDescending(name => name.Split(' ').Last())
+          .ThenByDescending(name => string.Join(" ", name.Split(' ').TakeWhile(n => n != name.Split(' ').Last())));
+    }
+
+    return query.ToList();
   }
 
   public void WriteNamesToConsole(List<string> sortedNames)
@@ -61,6 +83,18 @@ public class NameService : INameService
     }
 
     return filePath;
+  }
+
+  private bool ValidateSortDirection(string[] args)
+  {
+    if (args.Length < 2 || (args[1] != SortDirection.ASC && args[1] != SortDirection.DESC))
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
   }
   #endregion
 }
